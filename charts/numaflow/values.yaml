@@ -29,6 +29,9 @@ configs:
       # -- Maximum number or percentage of webhook pods that may be unavailable. Mutually exclusive with minAvailable.
       maxUnavailable: null
     
+    service:
+      name: "numaflow-webhook"
+    
     resources:
       limits:
         # -- The CPU limits for numaflow-server.
@@ -92,6 +95,7 @@ server:
   service:
     # -- The type of service for the numaflow server.
     type: ClusterIP
+    name: "numaflow-server"
   podDisruptionBudget:
     # -- Whether to create a PodDisruptionBudget for the numaflow server.
     enabled: false
@@ -130,6 +134,8 @@ dexServer:
       GITHUB_CLIENT_ID: ""
       # -- GitHub client secret for authentication.
       GITHUB_CLIENT_SECRET: ""
+  service:
+    name: "numaflow-dex-server"
 
   resources: {}
 
