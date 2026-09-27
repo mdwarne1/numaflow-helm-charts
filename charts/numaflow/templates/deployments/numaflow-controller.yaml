@@ -79,7 +79,7 @@ spec:
           resources:
             {{- toYaml .Values.controller.resources | nindent 12 }}
           securityContext:
-            {{- toYaml .Values.controller.podSecurityContext | nindent 12 }}
+            {{- toYaml .Values.controller.securityContext | nindent 12 }}
           ports:
             - containerPort: 9090
               name: metrics
@@ -87,7 +87,7 @@ spec:
             - mountPath: /etc/numaflow
               name: controller-config-volume
       securityContext:
-        {{- toYaml .Values.controller.securityContext | nindent 10 }}        
+        {{- toYaml .Values.controller.podSecurityContext | nindent 10 }}        
       serviceAccountName: numaflow-sa
       volumes:
         - configMap:

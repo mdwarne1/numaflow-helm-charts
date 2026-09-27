@@ -42,8 +42,8 @@ spec:
           resources:
             {{- toYaml .Values.configs.webhook.resources | nindent 12 }}
           securityContext:
-            {{- toYaml .Values.configs.webhook.podSecurityContext | nindent 12 }}
+            {{- toYaml .Values.configs.webhook.securityContext | nindent 12 }}
       serviceAccountName: numaflow-webhook-sa
       securityContext:
-        {{- toYaml .Values.configs.webhook.securityContext | nindent 8 }}
+        {{- toYaml .Values.configs.webhook.podSecurityContext | nindent 8 }}
 {{- end }}

@@ -38,7 +38,7 @@ spec:
           resources:
             {{- toYaml .Values.dexServer.resources | nindent 12 }}
           securityContext:
-            {{- toYaml .Values.dexServer.podSecurityContext | nindent 12 }}
+            {{- toYaml .Values.dexServer.securityContext | nindent 12 }}
           ports:
             - containerPort: 5556
           volumeMounts:
@@ -73,7 +73,7 @@ spec:
           resources:
             {{- toYaml .Values.dexServer.init.resources | nindent 12 }}
           securityContext:
-            {{- toYaml .Values.dexServer.init.podSecurityContext | nindent 12 }}
+            {{- toYaml .Values.dexServer.init.securityContext | nindent 12 }}
           volumeMounts:
             - mountPath: /cfg
               name: connector-config
@@ -84,7 +84,7 @@ spec:
       serviceAccountName: numaflow-dex-server
       
       securityContext:
-        {{- toYaml .Values.dexServer.securityContext | nindent 8 }}
+        {{- toYaml .Values.dexServer.podSecurityContext | nindent 8 }}
       volumes:
         - configMap:
             items:
