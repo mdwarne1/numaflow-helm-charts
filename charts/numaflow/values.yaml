@@ -26,7 +26,22 @@ configs:
       minAvailable: 1
       # -- Maximum number or percentage of webhook pods that may be unavailable. Mutually exclusive with minAvailable.
       maxUnavailable: null
-      
+    
+    resources:
+      limits:
+        # -- The CPU limits for numaflow-server.
+        cpu: 500m
+        # -- The memory limits for numaflow-server.
+        memory: 1024Mi
+      requests:
+        # -- The CPU requests for numaflow-server.
+        cpu: 100m
+        # -- The memory requests for numaflow-server.
+        memory: 200Mi
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 9737
+    podSecurityContext: {}
 
 server:
   # -- The number of numaflow-server replicas to run.
