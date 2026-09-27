@@ -26,6 +26,7 @@ configs:
       minAvailable: 1
       # -- Maximum number or percentage of webhook pods that may be unavailable. Mutually exclusive with minAvailable.
       maxUnavailable: null
+      
 
 server:
   # -- The number of numaflow-server replicas to run.
@@ -41,6 +42,10 @@ server:
       cpu: 100m
       # -- The memory requests for numaflow-server.
       memory: 200Mi
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 9737
+  podSecurityContext: {}
   configs:
     # -- Whether to disable TLS for UX server.
     insecure: false
@@ -75,6 +80,9 @@ server:
     minAvailable: 1
     # -- Maximum number or percentage of server pods that may be unavailable. Mutually exclusive with minAvailable.
     maxUnavailable: null
+  init:
+    resources: {}
+    podSecurityContext: {}
 
 dexServer:
   # -- Whether to enable the dex server for authentication, defaults to true.
@@ -102,6 +110,18 @@ dexServer:
       # -- GitHub client secret for authentication.
       GITHUB_CLIENT_SECRET: ""
 
+  resources: {}
+
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 9737
+  
+  podSecurityContext: {}
+  
+  init:
+    resources: {}
+    podSecurityContext: {}
+
 controller:
   # -- The number of controller replicas to run.
   replicaCount: 1
@@ -119,6 +139,12 @@ controller:
       leaseDuration: 15s
       renewDuration: 10s
       renewPeriod: 2s
+
+  podSecurityContext: {}
+
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 9737
 
   resources:
     limits:
