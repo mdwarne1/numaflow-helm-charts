@@ -114,7 +114,7 @@ spec:
           resources:
             {{- toYaml .Values.server.resources | nindent 12 }}
           securityContext:
-            {{- toYaml .Values.server.podSecurityContext | nindent 12 }}
+            {{- toYaml .Values.server.securityContext | nindent 12 }}
           volumeMounts:
             - mountPath: /ui/build/runtime-env.js
               name: env-volume
@@ -139,6 +139,10 @@ spec:
           image: {{ .Values.numaflow.image.repository }}:{{ .Values.numaflow.image.tag }}
           imagePullPolicy: {{ .Values.numaflow.image.pullPolicy }}
           name: server-init
+          resources:
+            {{- toYaml .Values.server.init.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.server.init.securityContext | nindent 12 }}
           volumeMounts:
             - mountPath: /opt/numaflow
               name: env-volume
