@@ -17,6 +17,8 @@ configs:
   # -- The namespace that the controller and the UX server watch when "namespaced" is true.
   managedNamespace: numaflow-system
   webhook:
+    # -- The name of the webhook deployment, can be templatized
+    name: numaflow-webhook 
     # -- numaflow server validating webhook default to true, deploy only when namespacedScope is false
     enabled: true
     podDisruptionBudget:
@@ -44,6 +46,8 @@ configs:
     podSecurityContext: {}
 
 server:
+  # -- The name of the numaflow-server deployment, can be templatized
+  name: numaflow-server
   # -- The number of numaflow-server replicas to run.
   replicaCount: 1
   resources:
@@ -100,6 +104,8 @@ server:
     podSecurityContext: {}
 
 dexServer:
+  # -- The name of the dex server deployment, can be templatized
+  name: numaflow-dex-server
   # -- Whether to enable the dex server for authentication, defaults to true.
   enabled: true
   image:
@@ -138,6 +144,8 @@ dexServer:
     podSecurityContext: {}
 
 controller:
+  # -- The name of the controller deployment, can be templatized
+  name: numaflow-controller
   # -- The number of controller replicas to run.
   replicaCount: 1
   podDisruptionBudget:

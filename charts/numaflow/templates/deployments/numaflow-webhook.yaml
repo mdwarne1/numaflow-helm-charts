@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: numaflow-webhook
+  name: {{ tpl .Values.configs.webhook.name . }}
   labels:
       {{- include "numaflow.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}

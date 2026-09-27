@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: numaflow-server
+  name: {{ tpl .Values.server.name . }}
   labels:
     {{- include "numaflow.labels" . | nindent 4 }}
   namespace: {{ .Release.Namespace }}
